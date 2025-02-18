@@ -1,16 +1,6 @@
 import { useState } from "react";
 import ShowCard from "../components/ShowCard";
-
-interface Show {
-    id: number,
-    name: string,
-    image: {
-        medium: string,
-        original: string
-    },
-    summary: string,
-    genres: Array<string>
-}
+import { Show } from '../types/global'
 
 const Home = () => {
     const [shows, setShows] = useState<Show[]>([])
