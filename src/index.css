@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Home */
+
+.shows-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1240px;
+    gap: 20px;
+    justify-content: center;
+}
+
+
+/* ShowCard */
+
+.show-card {
+    display: flex;
+    width: 49%;
+    gap: 15px;
+    padding: 10px;
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header,
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header {
+    color: #4f4f4f;
+    font-size: 20px;
+}
+
+.card-header p {
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.summary {
+    width: 95%;
+    color: #808080;
+}
+
+.card-footer {
+    margin-top: auto;
+    align-items: flex-end;
+}
+
+.rating {
+    color: #8080807a;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
+}
+
+.genres {
+    color: #808080c2;
+    font-size: 11px;
+}

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import ShowCard from "../components/ShowCard";
+import { useEffect, useState } from "react"
+import ShowCard from "../components/ShowCard"
 import { Show } from '../types/global'
 
 const Home = () => {
@@ -7,28 +7,31 @@ const Home = () => {
 
     const getShows = async (): Promise<void> => {
         try {
-            const response = await fetch('https://api.tvmaze.com/shows');
+            const response = await fetch('https://api.tvmaze.com/shows')
 
             if (!response.ok) {
-                throw new Error('Network response error.');
+                throw new Error('Network response error.')
             }
 
-            const data: Show[] = await response.json();
+            const data: Show[] = await response.json()
 
             setShows(data);
         } catch (err) {
-            console.error('Error during fetch:', err);
+            console.error('Error during fetch:', err)
         }
     };
 
-    getShows()
+    useEffect(() => {
+        getShows()
+    }, [])
+
 
     return (
-        <>
+        <div className="shows-container">
             {shows.map((show: Show) => {
                 return <ShowCard key={show.id} show={show} />
             })}
-        </>
+        </div>
     );
 }
 

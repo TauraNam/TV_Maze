@@ -6,6 +6,9 @@ export interface Show {
         original: string
     },
     summary: string,
+    rating: {
+        average: number
+    }
     genres: Array<string>
 }
 
