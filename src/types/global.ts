@@ -9,6 +9,16 @@ export interface Show {
     rating: {
         average: number
     }
-    genres: Array<string>
+    genres: Array<string>,
+    status: string,
+    premiered: string,
+    ended: string,
+    averageRuntime: number,
+    language: string,
+    officialSite: string
+}
+
+export interface ShowsContextType {
+    shows: Show[]
 }
 

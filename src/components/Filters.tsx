@@ -1,23 +1,47 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import FilterModal from "./FilterModal"
+import { useShowsContext } from "../context/ShowsContext"
+import { ShowsContextType } from "../types/global"
 
 interface FiltersProps {
     genres: {
-        genresList: Set<string>
         selectedGenres: string[]
         setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>
     }
     statuses: {
-        statusesList: Set<string>
         selectedStatuses: string[]
         setSelectedStatuses: React.Dispatch<React.SetStateAction<string[]>>
     }
 }
 
 const Filters: React.FC<FiltersProps> = ({ genres, statuses }) => {
+    const { shows } = useShowsContext() as ShowsContextType
+    
+    const [genresList] = useState<Set<string>>(new Set())
+    const [statusesList] = useState<Set<string>>(new Set())
 
     const [genresOpen, setGenresOpen] = useState<boolean>(false)
     const [statusOpen, setStatusOpen] = useState<boolean>(false)
+
+    const getGenres = (): void => {
+        for (const show of shows) {
+            for (const genre of show.genres) {
+                genresList.add(genre)
+            }
+        }
+    }
+
+    const getStatus = (): void => {
+        statusesList.add('All')
+        for (const show of shows) {
+            statusesList.add(show.status)
+        }
+    }
+
+    useEffect(() => {
+        getGenres()
+        getStatus()
+    }, [shows])
 
 
     const toggleGenresModal = () => {
@@ -42,11 +66,11 @@ const Filters: React.FC<FiltersProps> = ({ genres, statuses }) => {
 
             <button type="button" onClick={toggleGenresModal} className="genres-filter">Genres filter</button>
             {genresOpen &&
-                <FilterModal data={genres.genresList} selectStyle="checkbox" styleType="genres" selectedValues={genres.selectedGenres} setSelectedValues={genres.setSelectedGenres} />}
+                <FilterModal data={genresList} selectStyle="checkbox" styleType="genres" selectedValues={genres.selectedGenres} setSelectedValues={genres.setSelectedGenres} />}
 
             <button type="button" onClick={toggleStatusModal} className="status-filter">Status filter</button>
             {statusOpen &&
-                <FilterModal data={statuses.statusesList} selectStyle="radio" styleType="status" selectedValues={statuses.selectedStatuses} setSelectedValues={statuses.setSelectedStatuses} />}
+                <FilterModal data={statusesList} selectStyle="radio" styleType="status" selectedValues={statuses.selectedStatuses} setSelectedValues={statuses.setSelectedStatuses} />}
 
         </div>
     );
