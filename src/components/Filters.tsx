@@ -4,6 +4,7 @@ import { useShowsContext } from "../context/ShowsContext"
 import { ShowsContextType } from "../types/global"
 
 interface FiltersProps {
+    setSelectedSorting: React.Dispatch<React.SetStateAction<string>>
     genres: {
         selectedGenres: string[]
         setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>
@@ -14,14 +15,18 @@ interface FiltersProps {
     }
 }
 
-const Filters: React.FC<FiltersProps> = ({ genres, statuses }) => {
+const Filters: React.FC<FiltersProps> = ({ setSelectedSorting, genres, statuses }) => {
     const { shows } = useShowsContext() as ShowsContextType
-    
+
     const [genresList] = useState<Set<string>>(new Set())
     const [statusesList] = useState<Set<string>>(new Set())
 
     const [genresOpen, setGenresOpen] = useState<boolean>(false)
     const [statusOpen, setStatusOpen] = useState<boolean>(false)
+
+    const changeSorting = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        setSelectedSorting(e.target.value)
+    }
 
     const getGenres = (): void => {
         for (const show of shows) {
@@ -56,7 +61,7 @@ const Filters: React.FC<FiltersProps> = ({ genres, statuses }) => {
 
     return (
         <div className="filters-container">
-            <select className="sort-filter" defaultValue={""}>
+            <select className="sort-filter" defaultValue={""} onChange={changeSorting}>
                 <option value="">No sort</option>
                 <option value="name-asc">Name ascending</option>
                 <option value="name-dsc">Name descending</option>
@@ -64,7 +69,7 @@ const Filters: React.FC<FiltersProps> = ({ genres, statuses }) => {
                 <option value="premiered-dsc">Premiered descending</option>
             </select>
 
-            <button type="button" onClick={toggleGenresModal} className="genres-filter">Genres filter</button>
+            <button type="button" onClick={toggleGenresModal} className="genres-filter">Genres filter ({genres.selectedGenres.length}) </button>
             {genresOpen &&
                 <FilterModal data={genresList} selectStyle="checkbox" styleType="genres" selectedValues={genres.selectedGenres} setSelectedValues={genres.setSelectedGenres} />}
 

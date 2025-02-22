@@ -5,7 +5,7 @@ import { Show, ShowsContextType } from "../types/global"
 const Favorites = () => {
     const { shows } = useShowsContext() as ShowsContextType
 
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+    const favorites:Array<number> = JSON.parse(localStorage.getItem('favorites') || '[]')
 
     const filteredShows = shows.filter(show =>
         favorites.includes(show.id)
