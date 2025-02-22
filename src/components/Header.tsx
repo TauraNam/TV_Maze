@@ -1,13 +1,14 @@
 import { Link, NavLink } from "react-router-dom"
-import logo from '../assets/logo.png'
+import ThemeSwitch from "./ThemeSwitch"
 
 const Header = () => {
     return (
         <header className="header-container">
-            <div>
+            <div className="header-elements-container">
                 <Link to="/">
-                    <img src={logo} alt="Reiz-Tech-logo" className="logo" />
+                    <div className="logo"></div>
                 </Link>
+                <ThemeSwitch/>
             </div>
             <nav className="header-links-container">
                 <NavLink to="/" className={({ isActive }) => (isActive ? "header-links active" : "header-links")}>

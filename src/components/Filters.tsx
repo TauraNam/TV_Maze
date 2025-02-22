@@ -69,11 +69,11 @@ const Filters: React.FC<FiltersProps> = ({ setSelectedSorting, genres, statuses 
                 <option value="premiered-dsc">Premiered descending</option>
             </select>
 
-            <button type="button" onClick={toggleGenresModal} className="genres-filter">Genres filter ({genres.selectedGenres.length}) </button>
+            <p onClick={toggleGenresModal} className="genres-filter">Genres filter ({genres.selectedGenres.length}) </p>
             {genresOpen &&
                 <FilterModal data={genresList} selectStyle="checkbox" styleType="genres" selectedValues={genres.selectedGenres} setSelectedValues={genres.setSelectedGenres} />}
 
-            <button type="button" onClick={toggleStatusModal} className="status-filter">Status filter</button>
+            <p onClick={toggleStatusModal} className="status-filter">Status filter</p>
             {statusOpen &&
                 <FilterModal data={statusesList} selectStyle="radio" styleType="status" selectedValues={statuses.selectedStatuses} setSelectedValues={statuses.setSelectedStatuses} />}
 
