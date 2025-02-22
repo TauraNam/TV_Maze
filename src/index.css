@@ -78,7 +78,7 @@ body {
 .filter-modal {
     display: flex;
     flex-direction: column;
-    border: 2px solid grey;
+    border: 2px solid #808080;
     border-radius: 10px;
     width: 200px;
     position: absolute;
@@ -151,7 +151,7 @@ body {
 }
 
 .is-favorite {
-    color: green;
+    color: #0099009e;
 }
 
 .heart-icon {
@@ -214,8 +214,47 @@ body {
 }
 
 .link {
-    color: green;
+    color: #0099009e;
 }
+
+/* Pagination */
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-button {
+    cursor: pointer;
+    font-size: 25px;
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 30px 0;
+  }
+  
+  .page-button {
+    border: none;
+    background: #f0f0f0;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .page-button.active {
+    background: #0099009e;
+    color: #4f4f4f;
+    font-weight: bold;
+  }
+  
+  .pagination span {
+    margin: 0 5px;
+    font-weight: bold;
+  }
 
 /* Footer */
 

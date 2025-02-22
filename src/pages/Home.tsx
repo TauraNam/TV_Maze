@@ -3,6 +3,7 @@ import ShowCard from "../components/ShowCard"
 import { Show, ShowsContextType } from '../types/global'
 import Filters from "../components/Filters"
 import { useShowsContext } from "../context/ShowsContext"
+import Pagination from "../components/Pagination"
 
 const Home = () => {
     const { shows } = useShowsContext() as ShowsContextType
@@ -11,6 +12,9 @@ const Home = () => {
     const [selectedSorting, setSelectedSorting] = useState<string>('')
     const [selectedGenres, setSelectedGenres] = useState<string[]>([])
     const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['All'])
+
+    const [currentPage, setCurrentPage] = useState<number>(1)
+    const showsPerPage: number = 8
 
     const changeSorting = (): void => {
         let sorted = [...shows]
@@ -29,12 +33,20 @@ const Home = () => {
 
     useEffect(() => {
         changeSorting()
+        setCurrentPage(1)
     }, [selectedSorting, shows])
 
     const filteredShows = sortedShows.filter(show =>
         (selectedGenres.length === 0 || show.genres.some(genre => selectedGenres.includes(genre))) &&
         (selectedStatuses[0] === 'All' || show.status === selectedStatuses[0])
     )
+
+    const indexOfLastShow = currentPage * showsPerPage
+    const indexOfFirstShow = indexOfLastShow - showsPerPage
+    const currentShows = filteredShows.slice(indexOfFirstShow, indexOfLastShow)
+
+    const totalPages = Math.ceil(filteredShows.length / showsPerPage)
+
 
     return (
         <>
@@ -49,9 +61,12 @@ const Home = () => {
                 }}
             />
             <div className="shows-container">
-                {filteredShows.map((show: Show) => {
+                {currentShows.map((show: Show) => {
                     return <ShowCard key={show.id} show={show} />
                 })}
+            </div>
+            <div className="pagination-container">
+                <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}  />
             </div>
         </>
     );
