@@ -18,27 +18,29 @@ const ShowCard: React.FC<ShowCardProps> = ({ show }) => {
         <div className='show-card'>
             <a href={`/${show.id}`}>
                 <img src={show.image.medium} alt={show.name} />
-                <div className='card-details'>
-                    <div className='card-header'>
-                        <p>{show.name}</p>
-                        <FavoriteShow showId={show.id} buttonStyle={<MdOutlineFavoriteBorder />} buttonStyleActive={<MdOutlineFavoriteBorder className='is-favorite'/>}/>
-                    </div>
-                    <p className='summary'>
-                        {stripHtml(show.summary)
-                            .split(" ")
-                            .slice(0, 15)
-                            .join(" ") + "..." || ""
-                        }
-                    </p>
-                    <div className='card-footer'>
-                        <p className='rating'>
-                            <span>Rating</span>
-                            <span>{show.rating.average} / 10 </span>
-                        </p>
-                        <p className='genres'>{show.genres.join(', ')}</p>
-                    </div>
-                </div>
             </a>
+            <div className='card-details'>
+                <div className='card-header'>
+                    <a href={`/${show.id}`}>
+                        <p>{show.name}</p>
+                    </a>
+                    <FavoriteShow showId={show.id} buttonStyle={<MdOutlineFavoriteBorder className='heart-icon'/>} buttonStyleActive={<MdOutlineFavoriteBorder className='is-favorite heart-icon' />} />
+                </div>
+                <p className='summary'>
+                    {stripHtml(show.summary)
+                        .split(" ")
+                        .slice(0, 15)
+                        .join(" ") + "..." || ""
+                    }
+                </p>
+                <div className='card-footer'>
+                    <p className='rating'>
+                        <span>Rating</span>
+                        <span>{show.rating.average} / 10 </span>
+                    </p>
+                    <p className='genres'>{show.genres.join(', ')}</p>
+                </div>
+            </div>
         </div>
     );
 }

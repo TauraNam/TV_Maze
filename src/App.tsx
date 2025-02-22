@@ -11,6 +11,7 @@ function App() {
   return (
     <>
       <Header />
+      <main className="main-content">
       <ShowsProvider>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -18,6 +19,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </ShowsProvider>
+      </main>
       <Footer />
     </>
   )
