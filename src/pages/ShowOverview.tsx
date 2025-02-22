@@ -3,6 +3,7 @@ import { Show, ShowsContextType } from '../types/global'
 import { useEffect, useState } from "react"
 import { format } from 'date-fns'
 import { useShowsContext } from "../context/ShowsContext"
+import FavoriteShow from "../components/FavoriteShow"
 
 const ShowOverview = () => {
     const { shows } = useShowsContext() as ShowsContextType
@@ -45,7 +46,9 @@ const ShowOverview = () => {
                 <div className="show-details">
                     <div>
                         <p className="show-name">{show.name}</p>
-                        <p className="add-favorite">Add to favorites</p>
+                        <FavoriteShow showId={show.id} 
+                        buttonStyle={<p className="add-favorite">Add to favorites</p>} 
+                        buttonStyleActive={<p className="add-favorite is-favorite">Favorite</p>}/>
                         <p> {stripHtml(show.summary)}</p>
                     </div>
 

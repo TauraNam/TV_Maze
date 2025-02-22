@@ -138,6 +138,10 @@ body {
     font-weight: bold;
 }
 
+.is-favorite {
+    color: green;
+}
+
 .summary {
     width: 95%;
     color: #808080;
@@ -182,6 +186,8 @@ body {
 
 .add-favorite {
     margin-bottom: 15px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .show-name {

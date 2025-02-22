@@ -1,5 +1,6 @@
 import { Show } from '../types/global'
 import { MdOutlineFavoriteBorder } from "react-icons/md"
+import FavoriteShow from './FavoriteShow'
 
 
 interface ShowCardProps {
@@ -20,7 +21,7 @@ const ShowCard: React.FC<ShowCardProps> = ({ show }) => {
                 <div className='card-details'>
                     <div className='card-header'>
                         <p>{show.name}</p>
-                        <MdOutlineFavoriteBorder />
+                        <FavoriteShow showId={show.id} buttonStyle={<MdOutlineFavoriteBorder />} buttonStyleActive={<MdOutlineFavoriteBorder className='is-favorite'/>}/>
                     </div>
                     <p className='summary'>
                         {stripHtml(show.summary)
