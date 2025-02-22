@@ -1,14 +1,16 @@
+import { ChangeEvent, Dispatch, FC, SetStateAction } from "react"
+
 interface FilterModalProps {
     data: Set<string>,
     selectStyle: 'checkbox' | 'radio',
     styleType: 'genres' | 'status',
     selectedValues: string[],
-    setSelectedValues: React.Dispatch<React.SetStateAction<string[]>>
+    setSelectedValues: Dispatch<SetStateAction<string[]>>
 }
 
-const FilterModal: React.FC<FilterModalProps> = ({ data, selectStyle, styleType, selectedValues, setSelectedValues }) => {
+const FilterModal: FC<FilterModalProps> = ({ data, selectStyle, styleType, selectedValues, setSelectedValues }) => {
 
-    const selectFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectFilters = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
 
         setSelectedValues((prev) =>

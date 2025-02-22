@@ -1,4 +1,4 @@
-import { useState, useEffect, JSX } from 'react'
+import { useState, useEffect, JSX, FC } from 'react'
 
 interface FavoriteShowProps {
     showId: number,
@@ -6,7 +6,7 @@ interface FavoriteShowProps {
     buttonStyleActive: JSX.Element
 }
 
-const FavoriteShow: React.FC<FavoriteShowProps> = ({ showId, buttonStyle, buttonStyleActive }) => {
+const FavoriteShow: FC<FavoriteShowProps> = ({ showId, buttonStyle, buttonStyleActive }) => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
     useEffect(() => {

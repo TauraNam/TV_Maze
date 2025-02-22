@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react"
+import { ChangeEvent, Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import FilterModal from "./FilterModal"
 import { useShowsContext } from "../context/ShowsContext"
 import { ShowsContextType } from "../types/global"
 
 interface FiltersProps {
-    setSelectedSorting: React.Dispatch<React.SetStateAction<string>>
+    setSelectedSorting: Dispatch<SetStateAction<string>>
     genres: {
         selectedGenres: string[]
-        setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>
+        setSelectedGenres: Dispatch<SetStateAction<string[]>>
     }
     statuses: {
         selectedStatuses: string[]
-        setSelectedStatuses: React.Dispatch<React.SetStateAction<string[]>>
+        setSelectedStatuses: Dispatch<SetStateAction<string[]>>
     }
 }
 
-const Filters: React.FC<FiltersProps> = ({ setSelectedSorting, genres, statuses }) => {
+const Filters: FC<FiltersProps> = ({ setSelectedSorting, genres, statuses }) => {
     const { shows } = useShowsContext() as ShowsContextType
 
     const [genresList] = useState<Set<string>>(new Set())
@@ -24,7 +24,7 @@ const Filters: React.FC<FiltersProps> = ({ setSelectedSorting, genres, statuses 
     const [genresOpen, setGenresOpen] = useState<boolean>(false)
     const [statusOpen, setStatusOpen] = useState<boolean>(false)
 
-    const changeSorting = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const changeSorting = (e: ChangeEvent<HTMLSelectElement>): void => {
         setSelectedSorting(e.target.value)
     }
 

@@ -1,10 +1,12 @@
+import { Dispatch, FC, SetStateAction } from "react"
+
 interface FiltersProps {
     currentPage: number
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+    setCurrentPage: Dispatch<SetStateAction<number>>
     totalPages: number
 }
 
-const Pagination: React.FC<FiltersProps> = ({ currentPage, setCurrentPage, totalPages }) => {
+const Pagination: FC<FiltersProps> = ({ currentPage, setCurrentPage, totalPages }) => {
 
     const getPageNumbers = () => {
         const pages: Set<number> = new Set()

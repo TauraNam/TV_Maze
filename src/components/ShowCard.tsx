@@ -1,13 +1,14 @@
 import { Show } from '../types/global'
 import { MdOutlineFavoriteBorder } from "react-icons/md"
 import FavoriteShow from './FavoriteShow'
+import { FC } from 'react'
 
 
 interface ShowCardProps {
     show: Show
 }
 
-const ShowCard: React.FC<ShowCardProps> = ({ show }) => {
+const ShowCard: FC<ShowCardProps> = ({ show }) => {
 
     const stripHtml = (html: string) => {
         const doc = new DOMParser().parseFromString(html, "text/html")
