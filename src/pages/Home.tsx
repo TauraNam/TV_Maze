@@ -65,9 +65,9 @@ const Home = () => {
                     return <ShowCard key={show.id} show={show} />
                 })}
             </div>
-            <div className="pagination-container">
+            {totalPages > 1 && <div className="pagination-container">
                 <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}  />
-            </div>
+            </div>}
         </>
     );
 }
